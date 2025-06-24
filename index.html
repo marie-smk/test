@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html>
+<title>Portfolio de Marie - Data Science</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+.w3-row-padding img {margin-bottom: 12px}
+.w3-sidebar {width: 120px;background: #222;}
+#main {margin-left: 120px}
+@media only screen and (max-width: 600px) {#main {margin-left: 0}}
+
+/* Split Screen Effect - Version compacte et carrée */
+.split-container {
+    position: relative;
+    width: 80%; /* Largeur réduite */
+    height: 0;
+    padding-bottom: 40%; /* Format carré */
+    overflow: hidden;
+    margin: 40px auto; /* Centrage */
+    border-radius: 8px; /* Coins légèrement arrondis */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Ombre subtile */
+}
+
+.split-image-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.split-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+}
+
+.split-image-left {
+    clip-path: inset(0 50% 0 0);
+}
+
+.split-slider {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 4px;
+    height: 100%;
+    background: white;
+    cursor: ew-resize;
+    z-index: 10;
+}
+
+.split-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 5;
+    width: 100%;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Cadre fleuri pour les images */
+.flower-frame {
+    position: relative;
+    width: 90%;
+    padding: 20px;
+    background-color: var(--blanc-creme);
+    border: 12px solid transparent;
+    border-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M30,10 Q50,0 70,10 Q100,30 90,50 Q100,70 70,90 Q50,100 30,90 Q0,70 10,50 Q0,30 30,10" fill="%23FFB6D9" stroke="%23FF66B2" stroke-width="2"/></svg>') 30 round;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin: 20px auto;
+}
+
+/* Styles pour le diaporama */
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    margin: auto;
+}
+
+.mySlides {
+    display: none;
+    padding: 20px 0;
+}
+
+.slide-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.slide-image {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    height: 300px; /* Réduit de 400px à 300px */
+    display: flex;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.slide-image img {
+    width: 100%;
+    max-height: 300px; /* Réduit de 400px à 300px */
+    object-fit: cover;
+    object-position: top;
+    border-radius: 5px;
+}
+.slide-text {
+    flex: 2;
+    min-width: 300px;
+    padding: 20px;
+}
+
+/* Flèches de navigation */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -30px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.6s ease;
+    border-radius: 50%;
+    background-color: rgba(255,102,178,0.7);
+    user-select: none;
+    border: none;
+    z-index: 10;
+}
+
+.next {
+    right: 30px;
+}
+
+.prev {
+    left: 30px;
+}
+
+.prev:hover, .next:hover {
+    background-color: var(--rose-vif);
+}
+
+/* Points indicateurs */
+.dot-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 5px;
+    background-color: var(--gris-rose);
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: var(--rose-vif);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+
+/* Custom styles from your original CSS */
+:root {
+    --rose-pale: #FFE6F2;
+    --rose-doux: #FFB6D9;
+    --rose-vif: #FF66B2;
+    --mauve: #D4A5C9;
+    --lavande: #C4B6FF;
+    --blanc-creme: #FFF9FB;
+    --gris-rose: #F5E6EE;
+    --gris-fonce: #8A7A82;
+    --noir-rose: #5A4A50;
+}
+
+.w3-black {
+    background-color: var(--noir-rose) !important;
+}
+
+.w3-dark-grey {
+    background-color: var(--gris-fonce) !important;
+}
+
+.w3-light-grey {
+    background-color: var(--gris-rose) !important;
+    color: var(--noir-rose) !important;
+}
+
+.w3-text-light-grey {
+    color: var(--blanc-creme) !important;
+}
+
+.w3-text-grey {
+    color: var(--gris-rose) !important;
+}
+
+.w3-hover-black:hover {
+    background-color: var(--noir-rose) !important;
+}
+
+.projet {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(255, 182, 217, 0.2);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 1px solid var(--gris-rose);
+    margin-bottom: 20px;
+}
+
+.projet:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(255, 182, 217, 0.3);
+}
+
+.projet img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.projet:hover img {
+    transform: scale(1.05);
+}
+
+.projet-info {
+    padding: 25px;
+    background: white;
+}
+
+.projet-info h3 {
+    color: var(--rose-vif);
+    margin-bottom: 0.5rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--rose-doux), var(--mauve));
+    color: white;
+    box-shadow: 0 8px 24px rgba(255, 182, 217, 0.2);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px rgba(255, 102, 178, 0.3);
+}
+
+.timeline-item {
+    margin-bottom: 30px;
+    position: relative;
+    padding-left: 80px;
+}
+
+.timeline-date {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: var(--rose-vif);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.valeur-card {
+    background: rgba(22, 2, 77, 0.89);
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(255, 182, 217, 0.2);
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-top: 4px solid var(--rose-doux);
+    margin-bottom: 20px;
+}
+
+.valeur-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(255, 182, 217, 0.3);
+}
+
+.valeur-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--rose-doux), var(--mauve));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    color: white;
+    font-size: 1.8rem;
+}
+
+.competence-category {
+    background: rgba(22, 2, 77, 0.89);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(255, 182, 217, 0.2);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    margin-bottom: 20px;
+}
+
+.competence-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(255, 182, 217, 0.3);
+}
+
+.competence-category h3 {
+    color: var(--mauve);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.competence-category li {
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--gris-rose);
+    position: relative;
+    padding-left: 30px;
+    list-style-type: none;
+}
+
+.competence-category li::before {
+    content: '♥';
+    color: var(--rose-doux);
+    position: absolute;
+    left: 0;
+}
+
+.motivation-card {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(255, 182, 217, 0.2);
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    margin-bottom: 20px;
+}
+
+.motivation-card i {
+    font-size: 2.5rem;
+    color: var(--rose-vif);
+    margin-bottom: 20px;
+}
+
+.photo-profil {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.photo-profil:hover {
+    transform: scale(1.02);
+}
+
+.intro-img {
+    width: 100%;
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+
+.signature img {
+    height: 80px;
+    margin-top: 30px;
+    opacity: 0.8;
+}
+
+.skills-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.skills-list li {
+    padding: 10px 0;
+    position: relative;
+    padding-left: 30px;
+}
+
+.skills-list li::before {
+    content: '→';
+    color: var(--rose-vif);
+    position: absolute;
+    left: 0;
+}
+
+.passion-item {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.passion-item img {
+    width: 100%;
+    border-radius: 16px;
+    margin-bottom: 15px;
+}
+
+.tache-card {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(255, 182, 217, 0.2);
+    margin-bottom: 20px;
+}
+
+.tache-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--rose-doux), var(--mauve));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.realisation-item {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.realisation-img {
+    flex: 1;
+    min-width: 300px;
+    margin-right: 30px;
+    margin-bottom: 20px;
+}
+
+.realisation-img img {
+    width: 100%;
+    border-radius: 16px;
+}
+
+.realisation-details {
+    flex: 2;
+    min-width: 300px;
+}
+
+blockquote {
+    border-left: 4px solid var(--rose-vif);
+    padding-left: 20px;
+    font-style: italic;
+    margin: 30px 0;
+}
+
+.competence-badge {
+    display: inline-block;
+    background: var(--rose-pale);
+    color: var(--rose-vif);
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin: 5px;
+    font-size: 0.9rem;
+}
+
+.w3-opacity {
+    opacity: 0.8;
+}
+
+.w3-hover-opacity:hover {
+    opacity: 1;
+}
+.slide-image img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    object-position: top; /* Ajoutez cette ligne pour aligner par le haut */
+    border-radius: 5px;
+}
+/* Responsive */
+@media (max-width: 768px) {
+    .slide-content {
+        flex-direction: column;
+    }
+    
+    .slide-image, .slide-text {
+        min-width: 100%;
+        padding: 10px;
+    }
+    
+    .prev, .next {
+        font-size: 16px;
+        padding: 12px;
+    }
+    
+    .flower-frame {
+        padding: 15px;
+        border-width: 8px;
+    }
+}
+/* Nouveaux styles girly */
+body {
+    background-color: var(--blanc-creme);
+}
+
+.w3-black {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%) !important;
+}
+
+/* Animation de fond girly */
+.girly-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.1;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23FF66B2" d="M30,10 Q50,0 70,10 Q100,30 90,50 Q100,70 70,90 Q50,100 30,90 Q0,70 10,50 Q0,30 30,10"/></svg>');
+    background-size: 100px;
+}
+
+/* Boutons girly */
+.btn {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%) !important;
+    box-shadow: 0 4px 15px rgba(255, 102, 178, 0.4) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+    transform: scale(0);
+    transition: transform 0.5s ease;
+}
+
+.btn:hover::after {
+    transform: scale(1);
+}
+
+/* Animation des cartes */
+.projet, .valeur-card, .competence-category, .motivation-card {
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.projet:hover {
+    transform: translateY(-10px) rotate(1deg);
+    box-shadow: 0 20px 40px rgba(255, 102, 178, 0.3) !important;
+}
+
+/* Animation des icônes */
+.valeur-icon, .tache-icon {
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Effet de flottement pour les images */
+.photo-profil, .passion-item img {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Effet de confettis */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background-color: var(--rose-vif);
+    opacity: 0;
+    z-index: 9999;
+    animation: confetti 5s ease-in-out;
+}
+
+@keyframes confetti {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(1000px) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.sae-title-clickable {
+  background: linear-gradient(135deg, var(--rose-doux), var(--lavande));
+  padding: 10px 20px;
+  border-radius: 30px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(255, 102, 178, 0.3);
+  margin: 10px auto;
+  display: inline-block;
+}
+.sae-title-clickable:hover {
+  background: linear-gradient(135deg, var(--rose-vif), var(--mauve));
+  transform: scale(1.05);
+}
+
+.sae-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(90, 74, 80, 0.7);
+  animation: fadeIn 0.4s ease;
+}
+
+.sae-modal-content {
+  background-color: white;
+  margin: 80px auto;
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
+  color: var(--noir-rose);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  animation: zoomIn 0.5s ease;
+}
+
+.sae-close {
+  float: right;
+  font-size: 28px;
+  color: var(--rose-vif);
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.sae-close:hover {
+  transform: scale(1.2);
+  color: var(--mauve);
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+</style>
+<body class="w3-black">
+
+<!-- Icon Bar (Sidebar - hidden on small screens) -->
+<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+  <!-- Avatar image in top left corner -->
+  <img src="marie.jpg" style="width:100%">
+  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-home w3-xxlarge"></i>
+    <p>ACCUEIL</p>
+  </a>
+  <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-user w3-xxlarge"></i>
+    <p>À PROPOS</p>
+  </a>
+  <a href="#projects" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-eye w3-xxlarge"></i>
+    <p>PROJETS</p>
+  </a>
+  <a href="projets.html" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fas fa-project-diagram w3-xxlarge"></i>
+    <p>PROJETS ACADÉMIQUES</p>
+  </a>
+  <a href="#stage" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-briefcase w3-xxlarge"></i>
+    <p>STAGE</p>
+  </a>
+  <a href="#science" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fas fa-chart-line w3-xxlarge"></i>
+    <p>DATA SCIENCE</p>
+  </a>
+  <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-envelope w3-xxlarge"></i>
+    <p>CONTACT</p>
+  </a>
+</nav>
+
+<!-- Navbar on small screens (Hidden on medium and large screens) -->
+<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+  <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+    <a href="#" class="w3-bar-item w3-button" style="width:16.6% !important">ACCUEIL</a>
+    <a href="#about" class="w3-bar-item w3-button" style="width:16.6% !important">À PROPOS</a>
+    <a href="#projects" class="w3-bar-item w3-button" style="width:16.6% !important">PROJETS</a>
+    <a href="#stage" class="w3-bar-item w3-button" style="width:16.6% !important">STAGE</a>
+    <a href="#science" class="w3-bar-item w3-button" style="width:16.6% !important">DATA</a>
+    <a href="#contact" class="w3-bar-item w3-button" style="width:16.6% !important">CONTACT</a>
+  </div>
+</div>
+
+<!-- Page Content -->
+<div class="w3-container w3-padding-16" id="qualites" style="background-color:white; max-width:150px; margin:auto; border-radius:100px; box-shadow: 0 2px px rgba(0,0,0,0.1); text-align:center;">
+    <h3 class="w3-center" style="color:var(--rose-vif); border: 2px dashed var(--rose-vif); padding: 5px; border-radius: 100px; display: inline-block; font-size: 16px;">
+      <i class="fas fa-medal"></i> Je suis Étudiante en Science des Données
+    </h3>
+    <hr style="width:100px; border-color:var(--rose-vif)" class="w3-opacity">
+</div>
+
+
+<div class="w3-padding-large" id="main">
+  <div class="split-container" id="home">
+    <div class="split-image-wrapper">
+      <img src="marie-art.png" alt="Image Droite">
+    </div>
+    <div class="split-image-wrapper split-image-left" id="leftSplitImage">
+      <img src="marie-data.jpg" alt="Image Gauche">
+    </div>
+    <div class="split-slider" id="splitSlider"></div>
+    <div class="split-content">
+      
+      <a href="#projects" class="w3-button w3-white w3-padding-large w3-large w3-margin-top">Voir mes projets</a>
+    </div>
+  </div>
+
+<div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
+    <h2 class="w3-text-light-grey">À propos de moi</h2>
+    <hr style="width:200px" class="w3-opacity">
+    
+    <!-- Diaporama avec cadre fleuri -->
+    <div class="slideshow-container">
+        <!-- Slide 1 - Présentation -->
+        <div class="mySlides fade">
+            <div class="slide-content">
+                <div class="slide-image">
+                    <div class="flower-frame">
+                        <img src="marie.jpg" alt="Marie Samake">
+                    </div>
+                </div>
+                <div class="slide-text">
+                    <h3 style="color:var(--rose-vif)">Qui suis-je ?</h3>
+                    <p>Je m'appelle Marie Samake, étudiante en 2ème année de Bachelor Universitaire de Technologie en sciences des données à l'Université Sorbonne Paris Nord.</p>
+                    <p>Mon parcours vise à me permettre d'acquérir des compétences en traitement, analyse et valorisation de données.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 2 - Approche -->
+        <div class="mySlides fade">
+            <div class="slide-content">
+                <div class="slide-image">
+                    <div class="flower-frame">
+                        <img src="marie2.jpg" alt="Approche">
+                    </div>
+                </div>
+                <div class="slide-text">
+                    <h3 style="color:var(--rose-vif)">Mon Approche</h3>
+                    <p>Je considère la data science comme un outil de communication puissant. Mes projets suivent toujours cette philosophie :</p>
+                    <ul style="margin-left: 20px; padding-left: 0;">
+                        <li><strong>Compréhension</strong> des besoins utilisateurs</li>
+                        <li><strong>Analyse rigoureuse</strong> des données disponibles</li>
+                        <li><strong>Création</strong> de visualisations claires et impactantes</li>
+                        <li><strong>Communication</strong> des résultats de manière accessible</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 3 - JMon Projet Professionnel -->
+        <div class="mySlides fade">
+            <div class="slide-content">
+                <div class="slide-image">
+                    <div class="flower-frame">
+                        <img src="slide3.jpg" alt="Inspiration">
+                    </div>
+                </div>
+                <div class="slide-text">
+                    <h3 style="color:var(--rose-vif)">Mon Projet Professionnel</h3>
+                    <p>Je veux pousser plus loin l'exploration des données, en devenant data analyst.</p>
+                    <p>Mais surtout, je veux que ces analyses <strong>servent des enjeux concrets</strong>, 
+                        qu'elles améliorent des processus réels et aident à prendre des décisions éclairées.</p>
+                <strong>Mon ambition :</strong> Faire le pont entre la froideur des chiffres et la complexité des besoins humains, en créant des analyses qui parlent autant à un large public.
+              </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Flèches de navigation -->
+        <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+        <button class="next" onclick="plusSlides(1)">&#10095;</button>
+    </div>
+    
+    <!-- Points indicateurs -->
+    <div class="dot-container">
+        <span class="dot" onclick="currentSlide(1)"></span> 
+        <span class="dot" onclick="currentSlide(2)"></span> 
+        <span class="dot" onclick="currentSlide(3)"></span> 
+    </div>
+    
+    <!-- Mes Valeurs - Version optimisée -->
+    <h3 class="w3-padding-16 w3-text-light-grey">Mes Valeurs</h3>
+    <div class="w3-row-padding" style="margin-bottom: 30px;">
+        <div class="w3-col m4 w3-margin-bottom">
+            <div class="valeur-card" style="height: 100%;">
+                <div class="valeur-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3>Créativité</h3>
+                <p style="margin-bottom: 15px;">Transformer les concepts complexes en représentations visuelles intuitives et engageantes. Tout en inovent constamment. </p>
+            </div>
+        </div>
+        <div class="w3-col m4 w3-margin-bottom">
+            <div class="valeur-card" style="height: 100%;">
+                <div class="valeur-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Rigueur</h3>
+                <p style="margin-bottom: 15px;">Approche méthodique, non précipiter garantissant l'exactitude et la fiabilité des analyses.</p>
+            </div>
+        </div>
+        <div class="w3-col m4 w3-margin-bottom">
+            <div class="valeur-card" style="height: 100%;">
+                <div class="valeur-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <h3>Collaboration</h3>
+                <p style="margin-bottom: 15px;">Écoute active et travail d'équipe une des clés de la réussite.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Compétences -->
+    <h3 class="w3-padding-16 w3-text-light-grey">Mes Compétences</h3>
+    <div class="w3-row-padding" style="margin-bottom: 30px;">
+        <div class="w3-col m4">
+            <div class="competence-category" style="height: 100%;">
+                <h3><i class="fas fa-laptop-code"></i> Traiter </h3>
+                <ul>
+                    <li>Python
+                        (Pandas, NumPy...)</li>
+                    <li>SQL; 
+                        bases de données</li>
+                    <li>R</li>
+                    <li>Mathematica</li>
+                </ul>
+            </div>
+        </div>
+        <div class="w3-col m4">
+            <div class="competence-category" style="height: 100%;">
+                <h3><i class="fas fa-paint-brush"></i>Analyser</h3>
+                <ul>
+                    <li>Data Visualisation</li>
+                    <li>Modélisation linéaire</li>
+                    <li>Analyse en composante principal</li>
+                    <li>Statistiques Inferentielles</li>
+                </ul>
+            </div>
+        </div>
+        <div class="w3-col m4">
+            <div class="competence-category" style="height: 100%;">
+                <h3><i class="fas fa-users"></i> Valorisation </h3>
+                <ul>
+                    <li>Power BI & Tableau</li>
+                    <li>Communication</li>
+                    <li>Gestion de projet</li>
+                    <li>Présentée des données dans un
+                         environnement entrepeunarial</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Passions -->
+    <h3 class="w3-padding-16 w3-text-light-grey">Mes Passions</h3>
+    <div class="w3-row-padding">
+        <div class="w3-col m4">
+            <div class="passion-item">
+                <div class="flower-frame" style="padding: 10px; margin-bottom: 15px;">
+                    <img src="iut.jpg" alt="Photographie" style="width: 100%;">
+                </div>
+                <h4>Photographie</h4>
+                <p>Développe mon œil pour la composition et les détails visuels, photographie prise dans le <strong>parking de l'université</strong></p>
+            </div>
+        </div>
+        <div class="w3-col m4">
+            <div class="passion-item">
+                <div class="flower-frame" style="padding: 10px; margin-bottom: 15px;">
+                    <img src="livre.jpg" alt="Lecture" style="width: 100%;">
+                </div>
+                <h4>Lecture</h4>
+                <p>Très grande amatrice de lecture, je lis toutes sortes d'oeuvres, allant du thétre au romans en passant
+                     par des oeuvres de romances ou policières et en faisant un détour par des mangas/bandes dessinées. 
+
+                    Mon oeuvre favorite :
+                    <strong>Petit Pays de Gaël Faye</strong></p>
+            </div>
+        </div>
+        <div class="w3-col m4">
+            <div class="passion-item">
+                <div class="flower-frame" style="padding: 10px; margin-bottom: 15px;">
+                    <img src="Dakar.jpg" alt="Voyages" style="width: 100%;">
+                </div>
+                <h4>Voyages</h4>
+                <p>Découverte de nouvelles cultures et perspectives,
+                    Maroc
+                    Mauritanie
+                    Espagne
+                    Allemagne...
+                <strong>Photographie prise à Dakar (Sénégal)</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="w3-center" style="margin-top: 40px;">
+        <button class="btn">
+            <i class="fa fa-download"></i> Télécharger mon CV
+        </button>
+    </div>
+</div>
+<!-- Section Qualités Interactive - Version corrigée -->
+<div class="w3-container w3-padding-64" id="qualites" style="background-color:white; max-width:1000px; margin:auto; border-radius:15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+    <h2 class="w3-center" style="color:var(--rose-vif)">
+      <i class="fas fa-medal"></i> Mes Forces en Action
+    </h2>
+    <hr style="width:150px; border-color:var(--rose-vif)" class="w3-opacity">
+  
+    <div class="w3-row-padding w3-center" style="margin-top:50px;">
+      <!-- Créativité -->
+      <div class="w3-col m4">
+        <div class="qualite-card" style="padding:20px; position:relative;">
+          <div class="qualite-icon-hover" 
+               onmouseover="document.getElementById('creativite-tooltip').style.display='block'" 
+               onmouseout="document.getElementById('creativite-tooltip').style.display='none'"
+               style="width:100px; height:100px; margin:0 auto 20px; background:linear-gradient(135deg, var(--rose-doux), var(--mauve)); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:40px; cursor:pointer; transition:all 0.3s;">
+            <i class="fas fa-paint-brush"></i>
+          </div>
+          <h3 style="color:var(--noir-rose)">Créativité</h3>
+          <p style="color:var(--gris-fonce)">Donner vie aux données</p>
+          
+          <div id="creativite-tooltip" class="w3-panel w3-card" style="display:none; position:absolute; z-index:1; width:80%; left:10%; background:rgba(22, 2, 77, 0.89); padding:15px; border-left:4px solid var(--rose-vif); box-shadow:0 5px 15px rgba(0,0,0,0.1); text-align:left;">
+            <strong>Dashboard Excel :</strong> Création de tableaux de bord interactifs pour visualiser les données des
+            étudiants de l’IUT.
+          </div>
+        </div>
+      </div>
+  
+      <!-- Persévérance -->
+      <div class="w3-col m4">
+        <div class="qualite-card" style="padding:20px; position:relative;">
+          <div class="qualite-icon-hover"
+               onmouseover="document.getElementById('perseverance-tooltip').style.display='block'"
+               onmouseout="document.getElementById('perseverance-tooltip').style.display='none'"
+               style="width:100px; height:100px; margin:0 auto 20px; background:linear-gradient(135deg, var(--lavande), var(--mauve)); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:40px; cursor:pointer; transition:all 0.3s;">
+            <i class="fas fa-mountain"></i>
+          </div>
+          <h3 style="color:var(--noir-rose)">Persévérance</h3>
+          <p style="color:var(--gris-fonce)">Aller au bout de chaque démarche</p>
+          
+          <div id="perseverance-tooltip" class="w3-panel w3-card" style="display:none; position:absolute; z-index:1; width:80%; left:10%; background:rgba(22, 2, 77, 0.89); padding:15px; border-left:4px solid var(--rose-vif); box-shadow:0 5px 15px rgba(0,0,0,0.1); text-align:left;">
+            <strong>Nettoyage de données :</strong> Un travail de fourmi pour rassembler les données anonymiser des étudiants et personnels. Malgré les obstacles administratifs, cette persévérance a permis des analyses fondées sur des données réelles et représentatives.
+          </div>
+        </div>
+      </div>
+  
+      <!-- Sens du récit -->
+      <div class="w3-col m4">
+        <div class="qualite-card" style="padding:20px; position:relative;">
+          <div class="qualite-icon-hover"
+               onmouseover="document.getElementById('recit-tooltip').style.display='block'"
+               onmouseout="document.getElementById('recit-tooltip').style.display='none'"
+               style="width:100px; height:100px; margin:0 auto 20px; background:linear-gradient(135deg, var(--rose-vif), var(--mauve)); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:40px; cursor:pointer; transition:all 0.3s;">
+            <i class="fas fa-book-open"></i>
+          </div>
+          <h3 style="color:var(--noir-rose)">Sens du récit</h3>
+          <p style="color:var(--gris-fonce)">Argumentation et présentations d'informations</p>
+          
+          <div id="recit-tooltip" class="w3-panel w3-card" style="display:none; position:absolute; z-index:1; width:80%; left:10%; background:rgba(22, 2, 77, 0.89); padding:15px; border-left:4px solid var(--rose-vif); box-shadow:0 5px 15px rgba(0,0,0,0.1); text-align:left;">
+            <strong>Présentation CEO :</strong> J'ai transformé une analyse en un storyboard visuel structurant les données sous forme de narration persuasive. Par ailleurs, j'ai terminé ex aequo à la 3ᵉ place d'un concours d'éloquence réunissant environ 160 participants.          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+  // Animation supplémentaire pour les icônes
+  document.querySelectorAll('.qualite-icon-hover').forEach(icon => {
+    icon.addEventListener('mouseover', function() {
+      this.style.transform = 'scale(1.1)';
+      this.style.boxShadow = '0 8px 25px rgba(255, 102, 178, 0.3)';
+    });
+    icon.addEventListener('mouseout', function() {
+      this.style.transform = 'scale(1)';
+      this.style.boxShadow = 'none';
+    });
+  });
+  </script>
+
+    
+    <button class="w3-button w3-light-grey w3-padding-large w3-section">
+      <i class="fa fa-download"></i> Télécharger mon CV
+    </button>
+  </div>
+  
+  <!-- Projects Section -->
+  <div class="w3-padding-64 w3-content" id="projects">
+    <h2 class="w3-text-light-grey">Mes Projets</h2>
+    <hr style="width:200px" class="w3-opacity">
+    <h3>Projet </h3>
+    <div class="w3-center">
+      <a href="projets.html" class="btn">
+        <i class="fas fa-project-diagram"></i> Voir tous mes projets académiques
+      </a>
+    </div>
+  </div>
+    
+    <div style="background: white; border-radius: 20px; padding: 40px; margin-top: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+  <h3 style="text-align:center; font-size: 26px; color: var(--rose-vif); margin-bottom: 10px;">🌟 Mes Projets Académiques (SAÉ)</h3>
+  <p style="text-align:center; max-width: 800px; margin: auto; color: var(--noir-rose); font-size: 17px; margin-bottom: 30px;">
+    Les <strong>SAÉ</strong> (Situations d'Apprentissage et d'Évaluation) sont des projets concrets réalisés tout au long du BUT STID. 
+    Ils permettent de mettre en pratique les compétences techniques, analytiques et collaboratives acquises en cours. 
+    Voici quelques SAÉ marquantes que j’ai réalisées :
+  </p>
+   
+  <h3>Projet </h3>
+  <div class="w3-center">
+    <a href="projets.html" class="btn">
+      <i class="fas fa-project-diagram"></i> Voir tous mes projets académiques
+    </a>
+  </div>
+</div>
+  <div class="w3-row-padding w3-center">
+    <div class="w3-col m3">
+      <div class="sae-title-clickable" onclick="openModal('modalS103')">S103</div>
+    </div>
+    <div class="w3-col m3">
+      <div class="sae-title-clickable" onclick="openModal('modalS201')">S201</div>
+    </div>
+    <div class="w3-col m3">
+      <div class="sae-title-clickable" onclick="openModal('modalS206')">S206</div>
+    </div>
+    <div class="w3-col m3">
+      <div class="sae-title-clickable" onclick="openModal('modalS301')">S301</div>
+    </div>
+  </div>
+</div>
+    <div class="w3-col m3">
+    <div class="sae-title-clickable" onclick="openModal('modalS103')">S103</div>
+  </div>
+  <div class="w3-col m3">
+    <div class="sae-title-clickable" onclick="openModal('modalS201')">S201</div>
+  </div>
+  <div class="w3-col m3">
+    <div class="sae-title-clickable" onclick="openModal('modalS206')">S206</div>
+  </div>
+  <div class="w3-col m3">
+    <div class="sae-title-clickable" onclick="openModal('modalS301')">S301</div>
+  </div>
+</div>
+
+    
+  </div>
+  
+    <!-- Parcours Académique et Professionnel -->
+    <h3 class="w3-padding-16 w3-text-light-grey">Mon Parcours</h3>
+    <div class="w3-row-padding">
+        <div class="w3-col m6">
+            <div class="w3-card w3-white w3-padding" style="margin-bottom: 20px;">
+                <h4 style="color:var(--rose-vif)"><i class="fas fa-graduation-cap"></i> Formation</h4>
+                <div class="timeline-item">
+                    <div class="timeline-date">2023-Auj.</div>
+                    <div class="timeline-content">
+                        <h5>BUT Science des Données</h5>
+                        <p>Université Sorbonne Paris Nord</p>
+                        <p>IUT de Villetaneuse</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2020-2023</div>
+                    <div class="timeline-content">
+                        <h5>Baccalauréat Scientifique</h5>
+                        <p>Spécialité Mathématiques</p>
+                        <p>Spécialité Numérique et sciences informatiques</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w3-col m6">
+            <div class="w3-card w3-white w3-padding" style="margin-bottom: 20px;">
+                <h4 style="color:var(--rose-vif)"><i class="fas fa-briefcase"></i> Expérience</h4>
+                <div class="timeline-item">
+                    <div class="timeline-date">2023</div>
+                    <div class="timeline-content">
+                        <h5>Stage en Data Science</h5>
+                        <p>Peut etre la banque de france</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Avril-Aout 2025</div>
+                    <div class="timeline-content">
+                        <h5>Projets </h5>
+                        <p>Visualisation de données</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  <!-- Stage Section -->
+  <div class="w3-padding-64 w3-content" id="stage">
+    <h2 class="w3-text-light-grey">Mon Expérience de Stage</h2>
+    <hr style="width:200px" class="w3-opacity">
+    
+    <div class="w3-container w3-card w3-white w3-margin-bottom">
+      <h3>Chez <strong>DataVision Solutions</strong> - <span class="w3-opacity">Juillet à Septembre 2023</span></h3>
+    </div>
+    
+    <h3>Contexte du Stage</h3>
+    <div class="w3-row-padding">
+      <div class="w3-col m8">
+        <div class="w3-container w3-card w3-white w3-margin-bottom">
+          <h4>Présentation de l'entreprise</h4>
+          <p>DataVision Solutions est une startup spécialisée dans l'analyse de données et la création de tableaux de bord interactifs pour les PME. Avec une équipe de 15 collaborateurs, l'entreprise aide ses clients à transformer leurs données brutes en insights actionnables.</p>
+        </div>
+        <div class="w3-container w3-card w3-white w3-margin-bottom">
+          <h4>Mission principale</h4>
+          <p>En tant que stagiaire en data science, j'ai participé au développement d'une plateforme d'analyse de données clients avec un focus particulier sur l'expérience utilisateur et la qualité des visualisations.</p>
+        </div>
+      </div>
+      <div class="w3-col m4">
+        <div class="w3-container w3-center">
+          <img src="img/logo-entreprise.png" alt="Logo Entreprise" style="max-width:200px">
+        </div>
+      </div>
+    </div>
+    
+    <h3>Tâches Réalisées</h3>
+    <div class="w3-row-padding">
+      <div class="w3-col m4">
+        <div class="tache-card">
+          <div class="tache-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h3>Développement Data</h3>
+          <ul>
+            <li>Nettoyage et préparation des datasets</li>
+            <li>Création de pipelines de données</li>
+            <li>Automatisation des rapports</li>
+          </ul>
+        </div>
+      </div>
+      <div class="w3-col m4">
+        <div class="tache-card">
+          <div class="tache-icon">
+            <i class="fas fa-chart-bar"></i>
+          </div>
+          <h3>Visualisation</h3>
+          <ul>
+            <li>Conception de dashboards interactifs</li>
+            <li>Optimisation des visualisations</li>
+            <li>Tests utilisateurs</li>
+          </ul>
+        </div>
+      </div>
+      <div class="w3-col m4">
+        <div class="tache-card">
+          <div class="tache-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>Travail d'Équipe</h3>
+          <ul>
+            <li>Participation aux réunions Agile</li>
+            <li>Collaboration avec les designers</li>
+            <li>Présentation des résultats</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <h3>Mes Apprentissages</h3>
+    <div class="w3-row-padding">
+      <div class="w3-col m6">
+        <div class="w3-container w3-card w3-white w3-margin-bottom">
+          <h4>Compétences Techniques Acquises</h4>
+          <div>
+            <span class="competence-badge">Python avancé</span>
+            <span class="competence-badge">Power BI</span>
+            <span class="competence-badge">SQL</span>
+            <span class="competence-badge">Data Visualization</span>
+            <span class="competence-badge">Git</span>
+          </div>
+        </div>
+      </div>
+      <div class="w3-col m6">
+        <div class="w3-container w3-card w3-white w3-margin-bottom">
+          <h4>Développement Professionnel</h4>
+          <ul>
+            <li>Gestion de projet en équipe</li>
+            <li>Communication technique</li>
+            <li>Respect des deadlines</li>
+            <li>Présentation des résultats</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <h3>Réalisations Concrètes</h3>
+    <div class="realisation-item">
+      <div class="realisation-img">
+        <img src="img/projet-stage.jpg" alt="Projet réalisé">
+      </div>
+      <div class="realisation-details">
+        <h4>Dashboard Client</h4>
+        <p>Projet principal réalisé durant mon stage : un tableau de bord interactif permettant aux clients de suivre leurs KPI clés.</p>
+        <ul>
+          <li><strong>Objectifs :</strong> Fournir une vue d'ensemble des performances commerciales avec possibilité de drill-down</li>
+          <li><strong>Ma contribution :</strong> Conception des visualisations, développement des requêtes SQL, intégration des données</li>
+          <li><strong>Technologies :</strong> Power BI, SQL Server, Python</li>
+          <li><strong>Résultats :</strong> Adoption par 15 clients pilotes avec un taux de satisfaction de 94%</li>
+        </ul>
+        <a href="#" class="btn">Voir le projet complet</a>
+      </div>
+    </div>
+    
+    <h3>Bilan du Stage</h3>
+    <div class="w3-row-padding">
+      <div class="w3-col m8">
+        <blockquote>
+          "Ce stage m'a permis de concrétiser mes connaissances académiques en data science et de développer de nouvelles compétences en visualisation de données et en travail d'équipe agile. J'ai particulièrement apprécié l'aspect créatif de la conception des dashboards tout en maintenant une rigueur analytique."
+        </blockquote>
+      </div>
+      <div class="w3-col m4">
+        <div class="w3-container w3-card w3-white">
+          <h4>Points Clés</h4>
+          <ul>
+            <li>Durée : 3 mois (juillet à septembre 2023)</li>
+            <li>Encadrant : Dr. Sophie Martin, Lead Data Scientist</li>
+            <li>Équipe : 3 data scientists, 2 designers UI/UX</li>
+            <li>Outils : Power BI, Git, Jira, Python, SQL Server</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Data Science Section -->
+  <div class="w3-padding-64 w3-content" id="science">
+    <h2 class="w3-text-light-grey">Pourquoi j'ai choisi la Science des Données</h2>
+    <hr style="width:200px" class="w3-opacity">
+    
+    <div class="w3-row-padding">
+      <div class="w3-col m6">
+        <img src="img/data-science.jpg" alt="Science des données" class="intro-img">
+      </div>
+      <div class="w3-col m6">
+        <p class="lead">Mon parcours vers la data science est né d'une fascination pour le pouvoir transformateur des données et de leur capacité à révéler des vérités cachées. J'ai découvert que ce domaine unique me permettait de combiner mes deux passions : la créativité visuelle et la rigueur analytique.</p>
+      </div>
+    </div>
+    
+    <h3>Mes Motivations</h3>
+    <div class="w3-row-padding">
+      <div class="w3-col m4">
+        <div class="motivation-card">
+          <i class="fas fa-lightbulb"></i>
+          <h3>Curiosité Intellectuelle</h3>
+          <p>Depuis toujours attiré par les modèles et structures sous-jacents qui régissent notre monde. J'aime explorer les données pour découvrir des insights inattendus.</p>
+        </div>
+      </div>
+      <div class="w3-col m4">
+        <div class="motivation-card">
+          <i class="fas fa-chart-line"></i>
+          <h3>Impact Concret</h3>
+          <p>La capacité à transformer des données brutes en décisions stratégiques et actions mesurables qui améliorent réellement les processus et expériences.</p>
+        </div>
+      </div>
+      <div class="w3-col m4">
+        <div class="motivation-card">
+          <i class="fas fa-puzzle-piece"></i>
+          <h3>Résolution de Problèmes</h3>
+          <p>Passion pour décomposer les problèmes complexes en éléments analysables, puis reconstruire des solutions élégantes et efficaces.</p>
+        </div>
+      </div>
+    </div>
+    
+    <h3>Mon Parcours</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">2018</div>
+        <div class="timeline-content">
+          <h3>Première Rencontre avec Python</h3>
+          <p>Découverte de la programmation lors de mon cursus universitaire, coup de cœur immédiat pour l'analyse de données et la visualisation.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2020</div>
+        <div class="timeline-content">
+          <h3>Spécialisation en Machine Learning</h3>
+          <p>Formation intensive sur les algorithmes de prédiction et l'intelligence artificielle, avec un focus particulier sur l'interprétabilité des modèles.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2022</div>
+        <div class="timeline-content">
+          <h3>Projet Professionnel Décisif</h3>
+          <p>Implémentation d'un système de recommandation pour une librairie en ligne qui a augmenté les ventes croisées de 15% tout en améliorant l'expérience utilisateur.</p>
+        </div>
+      </div>
+    </div>
+    
+    <h3>Ma Vision</h3>
+    <blockquote>
+      "Je crois que la science des données doit servir à éclairer les décisions humaines, pas à les remplacer. Mon approche combine rigueur technique et sens éthique, avec un accent particulier sur la communication claire des résultats à travers des visualisations impactantes. Pour moi, une bonne analyse de données est comme une bonne histoire - elle doit être à la fois véridique et captivante."
+    </blockquote>
+    
+    <h3>Mes Compétences Techniques</h3>
+    <div class="w3-container w3-card w3-white">
+      <ul class="skills-list">
+        <li><strong>Langages :</strong> Python (Pandas, NumPy, Scikit-learn), R, SQL</li>
+        <li><strong>Machine Learning :</strong> Modèles supervisés et non supervisés, Feature engineering</li>
+        <li><strong>Visualisation :</strong> Matplotlib, Seaborn, Plotly, Power BI, Tableau</li>
+        <li><strong>Bases de données :</strong> SQL Server, MySQL, notions de NoSQL</li>
+        <li><strong>Traitement du langage naturel :</strong> Analyse de sentiment, Topic modeling</li>
+        <li><strong>Outils :</strong> Git, Jupyter Notebook, Docker (notions)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <div class="w3-padding-64 w3-content w3-text-grey" id="contact">
+    <h2 class="w3-text-light-grey">Contactez-moi</h2>
+    <hr style="width:200px" class="w3-opacity">
+
+    <div class="w3-section">
+      <p><i class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Paris, France</p>
+      <p><i class="fa fa-phone fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Téléphone: +33 6 12 34 56 78</p>
+      <p><i class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right"> </i> Email: marie.samake@example.com</p>
+    </div><br>
+    <p>Envoyez-moi un message :</p>
+
+    <form id="form-contact">
+      <p><input class="w3-input w3-padding-16" type="text" placeholder="Nom" required name="nom"></p>
+      <p><input class="w3-input w3-padding-16" type="email" placeholder="Email" required name="email"></p>
+      <p><textarea class="w3-input w3-padding-16" placeholder="Message" required name="message" style="height:150px"></textarea></p>
+      <p>
+        <button class="btn" type="submit">
+          <i class="fa fa-paper-plane"></i> ENVOYER
+        </button>
+      </p>
+    </form>
+    
+    <div class="w3-section w3-center">
+      <a href="#" class="w3-button w3-large w3-light-grey w3-hover-black"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" class="w3-button w3-large w3-light-grey w3-hover-black"><i class="fab fa-github"></i></a>
+      <a href="#" class="w3-button w3-large w3-light-grey w3-hover-black"><i class="fab fa-twitter"></i></a>
+      <a href="#" class="w3-button w3-large w3-light-grey w3-hover-black"><i class="fab fa-medium"></i></a>
+    </div>
+  </div>
+  
+    <!-- Footer -->
+  <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
+    <p class="w3-medium">© 2023 Marie Samake. Tous droits réservés.</p>
+  </footer>
+
+<!-- END PAGE CONTENT -->
+</div>
+
+<script>
+// Split Screen Effect Script
+const splitSlider = document.getElementById('splitSlider');
+const leftSplitImage = document.getElementById('leftSplitImage');
+const splitContainer = document.querySelector('.split-container');
+
+splitContainer.addEventListener('mousemove', (e) => {
+    let rect = splitContainer.getBoundingClientRect();
+    let x = e.clientX - rect.left;
+    let percent = (x / rect.width) * 100;
+    if (percent < 0) percent = 0;
+    if (percent > 100) percent = 100;
+    leftSplitImage.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+    splitSlider.style.left = percent + '%';
+});
+
+// Script pour le diaporama
+let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Menu mobile
+    const menuToggle = document.querySelector('.w3-bar');
+    const nav = document.querySelector('.w3-sidebar');
+    
+    menuToggle.addEventListener('click', function() {
+        nav.classList.toggle('active');
+    });
+
+    // Smooth scrolling pour les liens
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Animation au défilement
+    const animateOnScroll = function() {
+        const elements = document.querySelectorAll('.projet, .photo-profil, .competence-category, .form-group');
+        
+        elements.forEach(element => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (elementPosition < windowHeight - 100) {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }
+        });
+    };
+
+    // Initialiser les éléments cachés
+    document.querySelectorAll('.projet, .photo-profil, .competence-category, .form-group').forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    });
+
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll(); // Appeler une fois au chargement
+
+    // Gestion du formulaire de contact
+    const contactForm = document.getElementById('form-contact');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Ici vous pourriez ajouter du code pour envoyer le formulaire
+            alert('Merci pour votre message! Je vous répondrai dès que possible.');
+            contactForm.reset();
+        });
+    }
+
+    // Changement de style du header au scroll
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.style.padding = '15px 0';
+            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+        } else {
+            header.style.padding = '20px 0';
+            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+        }
+    });
+});
+
+// Gestion des ancres entre les pages
+window.addEventListener('DOMContentLoaded', function() {
+    if (window.location.hash) {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+            setTimeout(() => {
+                window.scrollTo({
+                    top: target.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }, 300);
+        }
+    }
+});
+
+function openModal(id) {
+  document.getElementById(id).style.display = "block";
+}
+function closeModal(id) {
+  document.getElementById(id).style.display = "none";
+}
+
+
+// Animation de confettis au chargement
+function createConfetti() {
+    const colors = ['#FF66B2', '#FFB6D9', '#D4A5C9', '#C4B6FF', '#FF9A9E'];
+    for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        confetti.style.animationDelay = (Math.random() * 2) + 's';
+        document.body.appendChild(confetti);
+    }
+}
+
+// Animation au survol des cartes
+document.querySelectorAll('.projet, .valeur-card, .competence-category').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-10px) rotate(1deg)';
+    });
+    card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) rotate(0)';
+    });
+});
+
+// Effet de vague pour le titre
+const title = document.querySelector('h2.w3-text-light-grey');
+if (title) {
+    title.innerHTML = title.textContent.split('').map((char, i) => 
+        `<span style="display: inline-block; transition: transform 0.3s ease ${i * 0.05}s;">${char}</span>`
+    ).join('');
+    
+    title.addEventListener('mouseenter', function() {
+        const spans = this.querySelectorAll('span');
+        spans.forEach((span, i) => {
+            span.style.transform = `translateY(${(i % 2 === 0 ? -5 : 5)}px)`;
+        });
+    });
+    
+    title.addEventListener('mouseleave', function() {
+        const spans = this.querySelectorAll('span');
+        spans.forEach(span => {
+            span.style.transform = 'translateY(0)';
+        });
+    });
+}
+
+// Animation des images au scroll
+function animateImages() {
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        const imgPosition = img.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+        
+        if (imgPosition < screenPosition) {
+            img.style.opacity = '1';
+            img.style.transform = 'scale(1) rotate(0deg)';
+        }
+    });
+}
+
+// Initialisation des images
+document.querySelectorAll('img').forEach(img => {
+    img.style.opacity = '0';
+    img.style.transform = 'scale(0.9) rotate(-2deg)';
+    img.style.transition = 'all 0.5s ease';
+});
+
+window.addEventListener('scroll', animateImages);
+animateImages();
+
+// Exécuter les animations au chargement
+window.addEventListener('load', function() {
+    createConfetti();
+    
+    // Animation d'entrée pour le contenu principal
+    const mainContent = document.getElementById('main');
+    mainContent.style.opacity = '0';
+    mainContent.style.transform = 'translateY(20px)';
+    mainContent.style.transition = 'all 0.8s ease';
+    
+    setTimeout(() => {
+        mainContent.style.opacity = '1';
+        mainContent.style.transform = 'translateY(0)';
+    }, 300);
+});
+</script>
+<div class="girly-bg"></div>
+
+<!-- Modales Interactives SAÉ -->
+<div id="modalS103" class="sae-modal">
+  <div class="sae-modal-content">
+    <span class="sae-close" onclick="closeModal('modalS103')">&times;</span>
+    <h3>S103 – Tableau de bord Excel</h3>
+    <p><strong>Sujet :</strong> Création d’un tableau de bord interactif sous Excel.</p>
+    <ul>
+      <li>PowerQuery, structuration de données</li>
+      <li>Graphiques et TCD</li>
+      <li>Visualisation claire et filtrée</li>
+    </ul>
+  </div>
+</div>
+
+<div id="modalS201" class="sae-modal">
+  <div class="sae-modal-content">
+    <span class="sae-close" onclick="closeModal('modalS201')">&times;</span>
+    <h3>S201 – Base de données</h3>
+    <p><strong>Sujet :</strong> Création d’une base de données sur les festivals.</p>
+    <ul>
+      <li>Modèle entités-associations</li>
+      <li>SQL (création, insertion, requêtes)</li>
+      <li>PostgreSQL + Metabase/Tableau</li>
+    </ul>
+  </div>
+</div>
+
+<div id="modalS206" class="sae-modal">
+  <div class="sae-modal-content">
+    <span class="sae-close" onclick="closeModal('modalS206')">&times;</span>
+    <h3>S206 – Analyse & Dataviz</h3>
+    <p><strong>Sujet :</strong> Étude du marché du rapatriement sanitaire.</p>
+    <ul>
+      <li>Analyse Python / Jupyter</li>
+      <li>Graphiques, cartes</li>
+      <li>Communication client</li>
+    </ul>
+  </div>
+</div>
+
+<div id="modalS301" class="sae-modal">
+  <div class="sae-modal-content">
+    <span class="sae-close" onclick="closeModal('modalS301')">&times;</span>
+    <h3>S301 – Enquête Alimentaire</h3>
+    <p><strong>Sujet :</strong> Réalisation d'une enquête terrain avec stratification.</p>
+    <ul>
+      <li>Questionnaire et échantillonnage</li>
+      <li>Post-stratification</li>
+      <li>Analyse et visualisation</li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>

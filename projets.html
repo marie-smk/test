@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mes Projets BUT1 & BUT2</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --rose-pale: #FFE6F2;
+      --rose-doux: #FFB6D9;
+      --rose-vif: #FF66B2;
+      --mauve: #D4A5C9;
+      --lavande: #C4B6FF;
+      --blanc-creme: #FFF9FB;
+      --gris-rose: #F5E6EE;
+      --gris-fonce: #8A7A82;
+      --noir-rose: #5A4A50;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Montserrat", sans-serif;
+      background-color: var(--blanc-creme);
+    }
+
+    .container {
+      background: linear-gradient(to bottom, var(--rose-pale), var(--rose-doux));
+      padding: 40px 20px;
+      border-radius: 20px;
+      margin: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-block {
+      background-color: white;
+      border-radius: 20px;
+      margin: 30px auto;
+      padding: 30px;
+      max-width: 1000px;
+      box-shadow: 0 8px 24px rgba(255, 182, 217, 0.2);
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border: 1px solid var(--gris-rose);
+    }
+
+    .project-block:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(255, 182, 217, 0.3);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .project-header h2 {
+      font-size: 24px;
+      color: var(--rose-vif);
+    }
+
+    .project-thumbnail {
+      width: 120px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.5s ease;
+    }
+
+    .project-thumbnail:hover {
+      transform: scale(1.05);
+    }
+
+    .project-subtitle {
+      font-size: 18px;
+      font-style: italic;
+      color: var(--noir-rose);
+      margin: 15px 0;
+    }
+
+    .project-carousel {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .carousel-image {
+      width: 250px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .carousel-image:hover {
+      transform: scale(1.02);
+    }
+
+    .carousel-content {
+      flex: 1;
+      background-color: var(--rose-pale);
+      border-left: 4px solid var(--lavande);
+      padding: 20px;
+      border-radius: 10px;
+      min-height: 150px;
+      color: var(--noir-rose);
+    }
+
+    .carousel-nav {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .carousel-btn {
+      display: inline-block;
+      margin: 0 10px;
+      padding: 10px 20px;
+      background: linear-gradient(135deg, var(--rose-doux), var(--mauve));
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 102, 178, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .carousel-btn:hover {
+      background: linear-gradient(135deg, var(--rose-vif), var(--mauve));
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 102, 178, 0.3);
+    }
+
+    .carousel-btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+      transform: scale(0);
+      transition: transform 0.5s ease;
+    }
+
+    .carousel-btn:hover::after {
+      transform: scale(1);
+    }
+
+    /* Animation de fond girly */
+    .girly-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.1;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23FF66B2" d="M30,10 Q50,0 70,10 Q100,30 90,50 Q100,70 70,90 Q50,100 30,90 Q0,70 10,50 Q0,30 30,10"/></svg>');
+      background-size: 100px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .project-carousel {
+        flex-direction: column;
+      }
+      
+      .carousel-image {
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      .project-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .container {
+        margin: 20px;
+        padding: 20px 10px;
+      }
+    }
+
+.but1-section {
+  background: linear-gradient(to bottom, var(--rose-pale), var(--rose-doux));
+}
+
+.but2-section {
+  background: linear-gradient(to bottom, #E0F7FF, #B3E5FC); /* bleu ciel très clair */
+}
+
+.section-title {
+  text-align: center;
+  font-size: 28px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: var(--rose-vif);
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+.sae-bubble {
+  background: linear-gradient(135deg, var(--rose-doux), var(--lavande));
+  border: none;
+  color: white;
+  font-size: 18px;
+  padding: 20px 25px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+.sae-bubble:hover {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, var(--rose-vif), var(--mauve));
+}
+
+.sae-modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(90, 74, 80, 0.7);
+  animation: fadeIn 0.4s;
+}
+
+.sae-modal-content {
+  background-color: white;
+  margin: auto;
+  padding: 30px;
+  border: 3px solid var(--rose-vif);
+  border-radius: 15px;
+  width: 80%;
+  max-width: 500px;
+  color: var(--noir-rose);
+  animation: slideIn 0.5s ease-out;
+}
+
+.sae-close {
+  color: var(--rose-vif);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+
+.sae-title-clickable {
+  background: linear-gradient(135deg, var(--rose-doux), var(--lavande));
+  padding: 4px 10px;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.sae-title-clickable:hover {
+  background: linear-gradient(135deg, var(--rose-vif), var(--mauve));
+  transform: scale(1.05);
+}
+
+  </style>
+</head>
+<body>
+
+  
+  <div class="container but1-section">
+    <div class="section-title"><i class="fas fa-graduation-cap"></i> Projets BUT 1</div>
+    <div id="but1-projects"></div>
+  </div>
+  <div class="container but2-section">
+    <div class="section-title"><i class="fas fa-graduation-cap"></i> Projets BUT 2</div>
+    <div id="but2-projects"></div>
+  </div>
+
+    <h2 style="text-align:center; color:var(--rose-vif); font-size:32px; margin-bottom:30px;">
+      <i class="fas fa-project-diagram"></i> Projets de BUT 1 et BUT 2
+    </h2>
+
+    <!-- Tous les blocs projets seront automatiquement ajoutés ici (voir script) -->
+  </div>
+
+
+<div class="container" style="background: linear-gradient(to right, #fff0f5, #e0f7fa); border: 2px dashed var(--rose-vif);">
+  <h2 style="text-align:center; color:var(--rose-vif); font-size:30px; margin-bottom:30px;">
+    <i class="fas fa-bubbles"></i> Sujet des SAÉ !
+  </h2>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+    <button class="sae-bubble" onclick="openModal('modalS103')">S103</button>
+    <button class="sae-bubble" onclick="openModal('modalS201')">S201</button>
+    <button class="sae-bubble" onclick="openModal('modalS206')">S206</button>
+    <button class="sae-bubble" onclick="openModal('modalS301')">S301</button>
+  </div>
+</div>
+
+<!-- Modales -->
+<div id="modalS103" class="sae-modal">
+  <div class="sae-modal-content">
+    <span class="sae-close" onclick="closeModal('modalS103')">&times;</span>
+    <h3>S103 – Tableau de données</h3>
+    <p><strong>Sujet :</strong> Création d’un tableau de bord interactif sous Excel à partir de données brutes.</p>
+    <ul>
+      <li>Structuration de données avec Excel / PowerQuery</li>
+      <li>Tableaux croisés dynamiques et graphiques</li>
+      <li>Visualisation filtrée et mise en forme claire</li>
+    </ul>
+  </div>
+</div>
+
+<div id="modalS201" class="sae-modal">
+  <div class="sae-modal-content">
+    <span class="sae-close" onclick="closeModal('modalS201')">&times;</span>
+    <h3>S201 – Base de données festivals</h3>
+    <p><strong>Sujet :</strong> Création d'une base de données sur les festivals en France.</p>
+    <ul>
+      <li>Modélisation entités-associations et schéma relationnel</li>
+      <li>SQL (création, insertion, requêtes)</li>
+      <li>PostgreSQL & Metabase/Tableau</li>
+    </ul>
+  </div>
+</div>
+
+<div id="modalS206" class="sae-modal">
+  <div class="sae-modal-content">
+    <span class="sae-close" onclick="closeModal('modalS206')">&times;</span>
+    <h3>S206 – Analyse & dataviz</h3>
+    <p><strong>Sujet :</strong> Étude sur le marché du rapatriement sanitaire.</p>
+    <ul>
+      <li>Nettoyage et analyse Python / Jupyter</li>
+      <li>Visualisation graphique et cartes</li>
+      <li>Travail en équipe et communication</li>
+    </ul>
+  </div>
+</div>
+
+<div id="modalS301" class="sae-modal">
+  <div class="sae-modal-content">
+    <span class="sae-close" onclick="closeModal('modalS301')">&times;</span>
+    <h3>S301 – Enquête alimentaire</h3>
+    <p><strong>Sujet :</strong> Réalisation d'une enquête terrain avec échantillonnage stratifié.</p>
+    <ul>
+      <li>Formulation d’hypothèses</li>
+      <li>Élaboration du questionnaire</li>
+      <li>Échantillonnage et post-stratification</li>
+      <li>Modélisation et visualisation</li>
+    </ul>
+  </div>
+</div>
+
+  <div class="w3-center" style="margin-bottom:40px;">
+    <a href="index.html" class="carousel-btn" style="text-decoration:none;">
+      <i class="fa fa-home"></i> Retour à l'accueil
+    </a>
+  </div>
+
+  <script>
+    const carousels = {
+      S103: {
+        title: "S103 – Tableau de bord Excel",
+        subtitle: "Sujet : Création d'un tableau de bord interactif sous Excel à partir de données brutes." ,
+        text : "Compétences mobilisées:",
+        text : "Structuration de données avec Excel / PowerQuery",
+        text:  "Tableaux croisés dynamiques et graphiques ",
+        text:  "Visualisation filtrée et mise en forme claire",
+      
+        thumb: "images-s103.png",
+        slides: [
+          { text: "🟢 Avant ce projet :  Je maîtrisais déjà les bases d'Excel, ce qui m'a permis de commencer sereinement.", img: "slideprojet1.png" },
+          { text: "📈 Montée en compétences : C'est en me trompant souvent que j'ai progressé. J'ai recommencé plusieurs fois certaines étapes, ce qui m'a permis de mieux comprendre comment structurer et nettoyer des données efficacement.", img: "slideprojet2.png" },
+          { text: "🚀 Éléments déclencheurs : La complexité du projet m'a poussé à tester, à corriger, et à explorer toutes les possibilités offertes par Excel et PowerQuery.", img: "slideprojet3.png" },
+          { text: "✅ Points positifs: Je suis fier du résultat final : un tableau de bord complet et original, composé de plusieurs pages dynamiquement reliées.", img: "slideprojet4.png" },
+          { text: "🔧 Progrès à accomplir : Gagner en rapidité et en efficacité dans la réalisation de ce type de projet.", img: "images-s103.png" }
+        ]
+      },
+      S201: {
+        title: "S201 – Base de données festivals",
+        subtitle: "Conception et implémentation d'une base de données relationnelle sur les festivals en France",
+        thumb: "images-s201.png",
+        slides: [
+          { text: "🟢 Avant ce projet: Nous avions déjà vu les bases du SQL et de la modélisation en cours au semestre précédent, ce qui nous a permis de démarrer avec une certaine assurance.", img: "slideprojet1.png" },
+          { text: "📈 Montée en compétences : Le travail en groupe m'a permis de progresser grâce à l'échange et à l'observation.", img: "slideprojet2.png" },
+          { text: "🚀 Éléments déclencheurs : Les retours de la prof et les erreurs rencontrées ont renforcé ma rigueur dans la conception.", img: "slideprojet3.png" },
+          { text: "✅ Points positifs : Un bon schéma relationnel qui a facilité toute la suite du projet, jusqu'à l'analyse finale.", img: "slideprojet4.png" },
+          { text: "🔧 Progrès à accomplir : Continuer à m'entraîner pour être plus rapide et autonome en SQL.", img: "images-s201.png" }
+        ]
+      },
+      S206: {
+        title: "S206 – Analyse et datavisualisation",
+        subtitle: "Analyse du marché du rapatriement sanitaire, visualisations et capsule vidéo",
+        thumb: "images-s206.png",
+        slides: [
+          { text: "🟢 Avant ce projet : Grâce aux cours, j'avais les bases nécessaires pour débuter sereinement.", img: "slideprojet1.png" },
+          { text: "📈Montée en compétences : Le travail de groupe m'a permis d'apprendre beaucoup en observant les autres et en expérimentant.", img: "slideprojet2.png" },
+          { text: "🚀 Éléments déclencheurs: Les nombreuses recherches de bases de données et les retours de l'enseignante nous ont permis de progresser.", img: "slideprojet3.png" },
+          { text: "✅ Points positifs : Un vrai travail d'équipe, des analyses pertinentes, une synthèse claire, et une capsule vidéo professionnelle.", img: "slideprojet4.png" },
+          { text: "🔧 Progrès à accomplir :Honnêtement, je pense qu'on a vraiment tout donné sur ce projet ! Donc, rien à redire !", img: "images-s206.png" }
+        ]
+      },
+      S301: {
+        title: "S301 – Enquête alimentaire",
+        subtitle: "Enquête statistique sur les habitudes alimentaires, avec échantillonnage et analyse",
+        thumb: "images-s301.png",
+        slides: [
+          { text: "🟢 Avant ce projet :  Je n'avais pas encore tout assimilé du cours, donc je me sentais un peu fragile.", img: "slideprojet1.png" },
+          { text: "📈 Montée en compétences: En pratiquant, en me trompant et en recommençant, j'ai progressivement mieux compris les concepts d'échantillonnage.", img: "slideprojet2.png" },
+          { text: "🚀 Éléments déclencheurs : Réaliser l'enquête de A à Z en conditions réelles m'a vraiment fait progresser.", img: "slideprojet3.png" },
+          { text: "✅ Points positifs : Une bonne gestion de projet, une problématique pertinente, des résultats utiles et une restitution visuelle claire.", img: "slideprojet4.png" },
+          { text: "🔧 Progrès à accomplir : Mieux maîtriser les plans stratifiés et la collecte de données en conditions complexes.", img: "images-s301.png" }
+        ]
+      },
+      S303: {
+        title: "S303 – Prévision temporelle",
+        subtitle: "Modélisation ARIMA pour la prévision de séries temporelles avec Python et Excel",
+        thumb: "images-s303.png",
+        slides: [
+          { text: "🟢 Avant ce projet : Pas encore à l'aise avec le cours, c'était un terrain encore inconnu.", img: "slideprojet1.png" },
+          { text: "📈 Montée en compétences : En appliquant les TD et en m'appuyant sur mes erreurs, j'ai pu comprendre la logique derrière les prévisions.", img: "slideprojet2.png" },
+          { text: "🚀 Éléments déclencheurs:  La pratique et l'adaptation du code issu d'exemples m'ont permis de mieux comprendre les modèles ARIMA.", img: "slideprojet3.png" },
+          { text: "✅ Points positifs : J'ai réussi à produire une analyse complète, argumentée, et à comparer les deux approches de prévision.", img: "slideprojet4.png" },
+          { text: "🔧 Progrès à accomplir :  M'approprier davantage les concepts théoriques pour être plus autonome sur la partie ARIMA.", img: "images-s303.png" }
+        ]
+      },
+      Shiny: {
+        title: "Projet Shiny – Application énergétique",
+        subtitle: "Application interactive pour visualiser la consommation énergétique en France",
+        thumb: "images/shiny.png",
+        slides: [
+          { text: "🟢 Avant ce projet : je connaissais R mais pas Shiny.", img: "images/shiny.png" },
+          { text: "📈 Montée : via documentation.", img: "images/shiny_doc.png" },
+          { text: "🚀 Déclencheurs : interactivité.", img: "images/shiny_interact.png" },
+          { text: "✅ Fierté : application claire.", img: "images/shiny_result.png" },
+          { text: "🔧 Progrès à accomplir : structuration du code.", img: "images/shiny_code.png" }
+        ]
+      }
+    };
+
+    
+    
+    function renderProjects() {
+      const but1Container = document.getElementById('but1-projects');
+      const but2Container = document.getElementById('but2-projects');
+      for (const [key, data] of Object.entries(carousels)) {
+        const isBUT2 = key.startsWith('S3') || key === 'Shiny';
+        const block = document.createElement('div');
+        block.className = 'project-block';
+        block.innerHTML = `
+          <div class="project-header">
+            <h2><span class="sae-title-clickable" onclick="openModal('modal${key}')">${key}</span> – ${data.title.substring(5)}</h2>
+            <img src="${data.thumb}" alt="${key}" class="project-thumbnail" />
+          </div>
+          <div class="project-subtitle">${data.subtitle}</div>
+          <div class="project-carousel">
+            <img src="${data.slides[0].img}" id="img${key}" class="carousel-image" />
+            <div class="carousel-content" id="text${key}">${data.slides[0].text}</div>
+          </div>
+          <div class="carousel-nav">
+            <button class="carousel-btn" onclick="changeSlide('${key}', -1)">⬅</button>
+            <button class="carousel-btn" onclick="changeSlide('${key}', 1)">➡</button>
+          </div>
+        `;
+        (isBUT2 ? but2Container : but1Container).appendChild(block);
+        data.index = 0;
+      }
+    }
+    function changeSlide(project, dir) {
+      const c = carousels[project];
+      c.index = (c.index + dir + c.slides.length) % c.slides.length;
+      document.getElementById("text" + project).innerHTML = c.slides[c.index].text;
+      document.getElementById("img" + project).src = c.slides[c.index].img;
+    }
+
+    
+function openModal(id) {
+  document.getElementById(id).style.display = "block";
+}
+
+function closeModal(id) {
+  document.getElementById(id).style.display = "none";
+}
+
+
+    window.onload = () => renderProjects();
+  </script>
+  <div class="girly-bg"></div>
+</body>
+</html>

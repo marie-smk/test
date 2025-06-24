@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conseils | Marie</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html"><i class="fas fa-heart"></i> Présentation</a>
+        <a href="science-donnees.html"><i class="fas fa-star"></i> Science Données</a>
+        <a href="specialite.html"><i class="fas fa-gem"></i> Spécialité</a>
+        <a href="technologie.html"><i class="fas fa-magic"></i> Technologie</a>
+        <a href="competences.html"><i class="fas fa-feather"></i> Compétences</a>
+        <a href="conseils.html" class="active"><i class="fas fa-quote-right"></i> Conseils</a>
+    </nav>
+
+    <div id="canvas-container"></div>
+
+    <section class="section active">
+        <div class="section-content">
+            <h2>Mes Conseils</h2>
+            <blockquote>
+                "En data science, la curiosité est aussi importante que la technique."
+                <footer>Marie Samake</footer>
+            </blockquote>
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>5 Conseils Clés</h3>
+                    <ol>
+                        <li>Commencez par bien comprendre le problème</li>
+                        <li>Visualisez toujours vos données avant analyse</li>
+                        <li>Documentez chaque étape de votre processus</li>
+                        <li>Restez à jour sur les nouvelles technologies</li>
+                        <li>Développez votre réseau professionnel</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="signature" style="text-align:center;margin-top:40px;">Marie</div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="animations.js"></script>
+    <script src="scripts.js"></script>
+    <footer class="site-footer">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Contact</h3>
+            <p>marie.samake@email.com</p>
+            <p>+33 6 12 34 56 78</p>
+          </div>
+          
+          <div class="footer-section">
+            <h3>Réseaux</h3>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+          
+          <div class="footer-section">
+            <h3>Credits</h3>
+            <p>&copy; 2023 Marie Samake</p>
+            <p>Tous droits réservés</p>
+          </div>
+        </div>
+      </footer>
+</body>
+</html>
